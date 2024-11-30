@@ -11,15 +11,15 @@
 
 ## 🌟 **Tính năng chính**  
 - **Học từ vựng**: Ghi nhớ từ vựng qua các danh sách từ được thiết kế sẵn.  
-- **Học ngữ pháp**: Hệ thống bài học giúp cải thiện ngữ pháp tiếng Anh cơ bản đến nâng cao.  
-- **Kiểm tra tiến độ**: Theo dõi mức độ học tập qua bài kiểm tra định kỳ.  
+- **Học ngữ pháp**: Hệ thống bài học giúp cải thiện ngữ pháp tiếng Anh.  
+- **Kiểm tra tiến độ**: Theo dõi mức độ học tập qua bài kiểm tra với dạng quiz.  
 - **Quiz vui nhộn**: Củng cố kiến thức bằng các bài quiz với giao diện thân thiện.  
-- **Giải trí**: Bao gồm các trò chơi nhỏ giúp người dùng vừa học vừa chơi.  
+- **Giải trí**: Trò chơi đơn giản giúp người dùng vừa học vừa chơi.  
 
 ---
 
 ## 🚀 **Cách cài đặt**  
-1. Tải ứng dụng từ kho lưu trữ này hoặc từ Google Play Store (nếu đã xuất bản).  
+1. Tải ứng dụng từ kho lưu trữ này hoặc từ Amazon Store.  
 2. Cài đặt file APK trên thiết bị Android.  
 3. Mở ứng dụng và bắt đầu hành trình học tiếng Anh của bạn!  
 
