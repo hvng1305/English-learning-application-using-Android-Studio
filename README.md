@@ -4,8 +4,8 @@
 
 # 📘 Dự án Học Tiếng Anh  
 
-Đây là ứng dụng học tiếng Anh được phát triển trong khuôn khổ môn học **Phát triển ứng dụng điện thoại di động**.  
-Ứng dụng hướng đến việc hỗ trợ người dùng học từ vựng, ngữ pháp, theo dõi tiến độ học tập, và giải trí với các trò chơi thú vị.  
+- Đây là ứng dụng học tiếng Anh được phát triển trong khuôn khổ môn học **Phát triển ứng dụng điện thoại di động**.  
+- Ứng dụng hướng đến việc hỗ trợ người dùng học từ vựng, ngữ pháp, theo dõi tiến độ học tập, và giải trí với các trò chơi thú vị.  
 
 ---
 
@@ -51,15 +51,13 @@
 ## 📖 **Hướng dẫn sử dụng**  
 1. **Đăng nhập/Đăng ký**: Người dùng cần tạo tài khoản hoặc đăng nhập để bắt đầu.  
 2. **Chọn chức năng**: Trên màn hình chính, bạn có thể chọn các mục như học từ vựng, ngữ pháp, kiểm tra tiến độ, hoặc chơi trò chơi.  
-3. **Cập nhật hồ sơ**: Hồ sơ người dùng sẽ lưu lại lịch sử và tiến độ học tập.  
+3. **Cập nhật hồ sơ**: Hồ sơ người dùng sẽ thay đổi tên, hình ảnh cá nhân.  
 
 ---
 
 ## 📬 **Liên hệ**  
-- **Tác giả**: [Tên bạn]  
-- **Email**: [Email liên hệ]  
-- **GitHub**: [Liên kết GitHub của bạn]  
-- **Trường học**: [Tên trường đại học của bạn]  
+- **Tác giả**: [Nguyễn Văn Hạnh]  
+- **Email**: [vhanh1366@gmail.com]  
 
 ---
 
