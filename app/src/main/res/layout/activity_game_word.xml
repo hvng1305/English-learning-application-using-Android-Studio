@@ -1,0 +1,91 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bggameon"
+    android:padding="16dp">
+
+
+    <!-- Thanh hiển thị điểm và thời gian -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="8dp">
+
+        <!-- Điểm của người chơi -->
+        <TextView
+            android:id="@+id/tvPlayerScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Người chơi: 0"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#2196F3"
+            android:layout_weight="1" />
+
+        <!-- Thời gian đếm ngược -->
+        <TextView
+            android:id="@+id/tvTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time: 15s"
+            android:textSize="18sp"
+            android:textColor="#FF5722"
+            android:layout_weight="1"
+            android:gravity="center" />
+
+        <!-- Điểm của AI -->
+        <TextView
+            android:id="@+id/tvAiScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AI: 0"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#4CAF50"
+            android:layout_weight="1"
+            android:gravity="end" />
+    </LinearLayout>
+
+    <!-- Khu vực chatbox -->
+    <ScrollView
+        android:id="@+id/chatScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/chatBox"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <!-- Input và nút submit -->
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etInputWord"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_edittext"
+            android:padding="12dp"
+            android:layout_weight="1"
+            android:hint="Nhập từ nối..."
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gửi" />
+    </LinearLayout>
+</LinearLayout>

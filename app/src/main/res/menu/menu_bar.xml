@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/home"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/learn"
+        android:icon="@drawable/learn"
+        android:title="@string/book" />
+
+    <item
+        android:id="@+id/game"
+        android:icon="@drawable/game"
+        android:title="@string/game" />
+
+    <item
+        android:id="@+id/task"
+        android:icon="@drawable/task"
+        android:title="@string/task" />
+
+    <item
+        android:id="@+id/user"
+        android:icon="@drawable/user"
+        android:title="@string/user" />
+
+</menu>

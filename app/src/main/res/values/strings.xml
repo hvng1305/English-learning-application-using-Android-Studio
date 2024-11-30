@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Learning English</string>
+    <string name="email">Email</string>
+    <string name="book">Learn</string>
+    <string name="home">Home</string>
+    <string name="game">Game</string>
+    <string name="task">Task</string>
+    <string name="user">User</string>
+    <string name="signup">Đăng Ký</string>
+    <string name="email_signup">Email</string>
+    <string name="password_signup">Password</string>
+    <string name="sign_up_btn">Sign Up</string>
+    <string name="haveaccount">Đã có tài khoản! Đăng nhập</string>
+    <string name="login">Đăng nhập</string>
+    <string name="password">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="forgot">Quên mật khẩu ?</string>
+    <string name="donthaveacc">Chưa có tài khoản? Đăng ký ngay</string>
+    <string name="dialog_forgotpass">Quên mật khẩu</string>
+    <string name="enteruremail">Nhập email của bạn:</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="reset_btn">Reset</string>
+
+
+    <string name="start_word">Từ bắt đầu: %1$s</string>
+    <string name="player_score">Người chơi: %1$d</string>
+    <string name="ai_score">AI: %1$d</string>
+    <string name="time_remaining">Thời gian: %1$s giây</string>
+    <string name="time_up">Hết thời gian! Bạn đã thua.</string>
+    <string name="time_up_loss">Hết thời gian! Bạn đã thua.</string>
+    <string name="invalid_word">Từ không hợp lệ!</string>
+    <string name="ai_win">AI đã đạt 40 điểm và giành chiến thắng!</string>
+    <string name="player_win">Bạn đã đạt 40 điểm và giành chiến thắng!</string>
+    <string name="ai_no_word">AI không tìm được từ nào. Bạn thắng!</string>
+    <string name="ai_no_word_win">AI không thể tìm được từ, bạn đã chiến thắng!</string>
+    <string name="congratulations">Chúc mừng!</string>
+    <string name="game_over">Game Over</string>
+    <string name="play_again">Chơi lại</string>
+    <string name="exit">Thoát</string>
+    <string name="time_limit">15 giây</string>
+
+</resources>
