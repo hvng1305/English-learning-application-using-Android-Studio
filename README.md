@@ -1,5 +1,5 @@
-📘 Dự án Học Tiếng Anh
-Đây là ứng dụng học tiếng Anh được phát triển trong khuôn khổ môn học Phát triển ứng dụng điện thoại di động.
+📘 #Dự án Học Tiếng Anh
+- #Đây là ứng dụng học tiếng Anh được phát triển trong khuôn khổ môn học Phát triển ứng dụng điện thoại di động.
 Ứng dụng hướng đến việc hỗ trợ người dùng học từ vựng, ngữ pháp, theo dõi tiến độ học tập, và giải trí với các trò chơi thú vị.
 
 🌟 Tính năng chính
