@@ -1,6 +1,6 @@
 # Dự án Học Tiếng Anh
 
-Đây là ứng dụng học tiếng Anh của tôi.
+Đây là ứng dụng học tiếng Anh của tôi dành cho môn học Phát triển ứng dụng điện thoại di động.
 
 # Hình ảnh
 
@@ -15,4 +15,4 @@
 
 
 
-Ứng dụng giúp người dùng học từ vựng, kiểm tra tiến độ và thực hiện các bài quiz.
+Ứng dụng giúp người dùng học từ vựng, học ngữ pháp, kiểm tra tiến độ bằng cách thực hiện các bài quiz, cùng với đó có trò chơi giải trí cơ bản cho người dùng.
