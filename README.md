@@ -4,9 +4,10 @@
 
 # Hình ảnh
 
-<img src="./imageloginapp.png" alt="Giao diện đăng nhập" width="200">
+<img src="./splashapp.png" alt="Giao diện của App" width="150">
 
 <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+   <img src="./imageloginapp.png" alt="Giao diện chính" width="150">
   <img src="./imagehomeapp.png" alt="Giao diện chính" width="150">
   <img src="./imagevocabulary.png" alt="Giao diện từ vựng" width="150">
   <img src="./imagegameapp.png" alt="Giao diện trò chơi" width="150">
