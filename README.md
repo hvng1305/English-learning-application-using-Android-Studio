@@ -5,6 +5,7 @@
 # Hình ảnh
 
 <img src="./splashapp.png" alt="Giao diện của App" width="150">
+<img src="./Logo App.png" alt="Giao diện của App" width="150">
 
 <div style="display: flex; justify-content: space-around; margin-top: 10px;">
    <img src="./imageloginapp.png" alt="Giao diện chính" width="150">
