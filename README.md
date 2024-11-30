@@ -3,9 +3,10 @@
 Đây là ứng dụng học tiếng Anh của tôi dành cho môn học Phát triển ứng dụng điện thoại di động.
 
 # Hình ảnh
-
+<div style="display: flex; justify-content: space-around; margin-top: 10px;">
 <img src="./splashapp.png" alt="Giao diện của App" width="150">
 <img src="./Logo App.png" alt="Giao diện của App" width="150">
+</div>
 
 <div style="display: flex; justify-content: space-around; margin-top: 10px;">
    <img src="./imageloginapp.png" alt="Giao diện chính" width="150">
