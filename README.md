@@ -40,9 +40,11 @@
 ### **Các giao diện chính**  
 <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 10px;">  
    <img src="./imageloginapp.png" alt="Giao diện đăng nhập" width="150">  
-   <img src="./imagehomeapp.png" alt="Giao diện trang chính" width="150">  
+   <img src="./imagehomeapp.png" alt="Giao diện trang chính" width="150">
+   <img src="./imagegrammarapp.png" alt="Giao diện ngữ pháp" width="150">  
    <img src="./imagevocabulary.png" alt="Giao diện từ vựng" width="150">  
-   <img src="./imagegameapp.png" alt="Giao diện trò chơi" width="150">  
+   <img src="./imagegameapp.png" alt="Giao diện trò chơi" width="150"> 
+   <img src="./imagetaskapp.png" alt="Giao diện kiểm tra" width="150">  
    <img src="./imageuserapp.png" alt="Giao diện người dùng" width="150">  
 </div>  
 
