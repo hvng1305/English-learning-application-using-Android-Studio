@@ -168,7 +168,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:background="@drawable/rounded_corner">
 
                 <EditText
                     android:layout_width="match_parent"
@@ -221,6 +222,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
                 android:id="@+id/meaning_recycler_view" />
         </LinearLayout>
     </ScrollView>

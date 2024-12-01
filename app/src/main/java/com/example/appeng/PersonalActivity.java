@@ -33,10 +33,8 @@ public class PersonalActivity extends AppCompatActivity {
 
     private ImageView imgProfile;
     private EditText edtName;
-    private Button btnSave, btnChooseImage;
     private Uri selectedImageUri;
 
-    private FirebaseAuth firebaseAuth;
     private FirebaseUser currentUser;
     private FirebaseFirestore firestore;
     private StorageReference storageReference;
@@ -49,7 +47,7 @@ public class PersonalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_personal);
 
         // Initialize Firebase components
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         currentUser = firebaseAuth.getCurrentUser();
         firestore = FirebaseFirestore.getInstance();
         storageReference = FirebaseStorage.getInstance().getReference();
@@ -66,8 +64,8 @@ public class PersonalActivity extends AppCompatActivity {
         // Bind UI elements
         imgProfile = findViewById(R.id.imgProfile);
         edtName = findViewById(R.id.edtName);
-        btnSave = findViewById(R.id.btnSave);
-        btnChooseImage = findViewById(R.id.btnChooseImage);
+        Button btnSave = findViewById(R.id.btnSave);
+        Button btnChooseImage = findViewById(R.id.btnChooseImage);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please wait...");

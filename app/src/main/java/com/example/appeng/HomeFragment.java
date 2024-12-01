@@ -14,10 +14,10 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.appeng.databinding.ActivityHomeFragmentBinding;
 import java.util.Collections;
+import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         toolbar.inflateMenu(R.menu.notification);
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.notification) {
-                Toast.makeText(getActivity(), "Thông báo đã được nhấn!", Toast.LENGTH_SHORT).show();  // "Notification clicked!" -> "Thông báo đã được nhấn!"
+                Toast.makeText(getActivity(), getString(R.string.notification_clicked), Toast.LENGTH_SHORT).show();
                 return true;
             }
             return false;
@@ -54,46 +54,28 @@ public class HomeFragment extends Fragment {
 
         // Set up sự kiện khi nhấn nút tìm kiếm
         binding.searchBtn.setOnClickListener(v -> {
-            String word = binding.searchInput.getText().toString();
-            getMeaning(word);
+            String word = binding.searchInput.getText().toString().trim();
+            if (!word.isEmpty()) {
+                getMeaning(word);
+            } else {
+                Toast.makeText(getContext(), getString(R.string.empty_search), Toast.LENGTH_SHORT).show();
+            }
         });
 
-        // Handle Personal button click
+        // Handle Grammar button click
         btnGrammar.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), NguPhapActivity.class);
             startActivity(intent);
         });
 
-        // Handle Personal button click
-        btnVocabulary.setOnClickListener(v -> {
-            // Thay vì Intent, sử dụng FragmentTransaction để thay thế fragment
-            assert getFragmentManager() != null;
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new LearnFragment());
-            transaction.addToBackStack(null); // Cho phép quay lại Fragment trước đó
-            transaction.commit();
-        });
+        // Handle Vocabulary button click
+        btnVocabulary.setOnClickListener(v -> navigateToFragment(new LearnFragment()));
 
+        // Handle Games button click
+        btnGames.setOnClickListener(v -> navigateToFragment(new GameFragment()));
 
-        // Handle Personal button click
-        btnGames.setOnClickListener(v -> {
-            // Thay vì Intent, sử dụng FragmentTransaction để thay thế fragment
-            assert getFragmentManager() != null;
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new GameFragment());
-            transaction.addToBackStack(null); // Cho phép quay lại Fragment trước đó
-            transaction.commit();
-        });
-
-        // Handle Personal button click
-        btnQuiz.setOnClickListener(v -> {
-            // Thay vì Intent, sử dụng FragmentTransaction để thay thế fragment
-            assert getFragmentManager() != null;
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, new TaskFragment());
-            transaction.addToBackStack(null); // Cho phép quay lại Fragment trước đó
-            transaction.commit();
-        });
+        // Handle Quiz button click
+        btnQuiz.setOnClickListener(v -> navigateToFragment(new TaskFragment()));
 
         return view;
     }
@@ -102,21 +84,21 @@ public class HomeFragment extends Fragment {
         setInProgress(true);
 
         Call<List<WordResult>> call = RetrofitInstance.getDictionaryApi().getMeaning(word);
-        call.enqueue(new Callback<List<WordResult>>() {
+        call.enqueue(new Callback<>() {
             @Override
             public void onResponse(@NonNull Call<List<WordResult>> call, @NonNull Response<List<WordResult>> response) {
                 setInProgress(false);
                 if (response.body() != null && !response.body().isEmpty()) {
                     setUI(response.body().get(0));
                 } else {
-                    Toast.makeText(getContext(), "Không tìm thấy từ", Toast.LENGTH_SHORT).show();  // "Word not found" -> "Không tìm thấy từ"
+                    Toast.makeText(getContext(), getString(R.string.word_not_found), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<WordResult>> call, Throwable t) {
+            public void onFailure(@NonNull Call<List<WordResult>> call, @NonNull Throwable t) {
                 setInProgress(false);
-                Toast.makeText(getContext(), "Đã xảy ra lỗi", Toast.LENGTH_SHORT).show();  // "Something went wrong" -> "Đã xảy ra lỗi"
+                Toast.makeText(getContext(), getString(R.string.error_occurred), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -128,13 +110,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void setInProgress(boolean inProgress) {
-        if (inProgress) {
-            binding.searchBtn.setVisibility(View.INVISIBLE);
-            binding.progressBar.setVisibility(View.VISIBLE);
-        } else {
-            binding.searchBtn.setVisibility(View.VISIBLE);
-            binding.progressBar.setVisibility(View.INVISIBLE);
-        }
+        binding.searchBtn.setVisibility(inProgress ? View.INVISIBLE : View.VISIBLE);
+        binding.progressBar.setVisibility(inProgress ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    private void navigateToFragment(Fragment fragment) {
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     @Override

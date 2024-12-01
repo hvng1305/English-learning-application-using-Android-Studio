@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Liên kết với BottomNavigationView
         nav = findViewById(R.id.nav);
 
         // Đặt fragment mặc định là HomeFragment
@@ -25,30 +26,30 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         }
 
-        nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
+        // Sử dụng lambda thay cho lớp ẩn danh cho OnItemSelectedListener
+        nav.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
 
-                // Sử dụng if-else thay cho switch
-                if (item.getItemId() == R.id.home) {
-                    selectedFragment = new HomeFragment();
-                } else if (item.getItemId() == R.id.learn) {
-                    selectedFragment = new LearnFragment();
-                } else if (item.getItemId() == R.id.game) {
-                    selectedFragment = new GameFragment();
-                } else if (item.getItemId() == R.id.task) {
-                    selectedFragment = new TaskFragment();
-                } else if (item.getItemId() == R.id.user) {
-                    selectedFragment = new UserFragment();
-                }
-
-                // Thay đổi fragment mà không cần khởi tạo Activity mới
-                if (selectedFragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
-                }
-                return true;
+            // Sử dụng if-else để kiểm tra item được chọn
+            if (item.getItemId() == R.id.home) {
+                selectedFragment = new HomeFragment();
+            } else if (item.getItemId() == R.id.learn) {
+                selectedFragment = new LearnFragment();
+            } else if (item.getItemId() == R.id.game) {
+                selectedFragment = new GameFragment();
+            } else if (item.getItemId() == R.id.task) {
+                selectedFragment = new TaskFragment();
+            } else if (item.getItemId() == R.id.user) {
+                selectedFragment = new UserFragment();
             }
+
+            // Nếu fragment được chọn khác null, thay đổi fragment hiện tại
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+            }
+
+            // Trả về true để đánh dấu rằng sự kiện đã được xử lý
+            return true;
         });
     }
 }

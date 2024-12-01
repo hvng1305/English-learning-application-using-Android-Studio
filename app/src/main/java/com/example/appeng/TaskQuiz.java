@@ -14,8 +14,7 @@ import com.example.appeng.databinding.ActivityTaskQuizBinding;
 import com.example.appeng.databinding.ScoreDialogBinding;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.Locale;
 
 public class TaskQuiz extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,8 +25,6 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
     private int currentQuestionIndex = 0;
     private String selectedAnswer = "";
     private int score = 0;
-
-    private ExecutorService executorService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +42,6 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
         // Xử lý sự kiện quay lại
         binding.toolbar.setNavigationOnClickListener(v -> navigateToLearnFragment());
 
-        // Khởi tạo ExecutorService
-        executorService = Executors.newSingleThreadExecutor();
-
         // Thiết lập các sự kiện click
         binding.btn0.setOnClickListener(this);
         binding.btn1.setOnClickListener(this);
@@ -62,9 +56,6 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (executorService != null && !executorService.isShutdown()) {
-            executorService.shutdown(); // Đảm bảo đóng ExecutorService khi Activity bị hủy
-        }
     }
 
     // Quay lại fragment trước đó khi nhấn nút quay lại
@@ -76,23 +67,22 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
     private void startTimer() {
         long totalTimeInMillis = Integer.parseInt(time) * 60 * 1000L;
 
-        // Dùng ExecutorService để chạy bộ đếm thời gian trong luồng riêng
-        executorService.execute(() -> {
-            new CountDownTimer(totalTimeInMillis, 1000L) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    long seconds = millisUntilFinished / 1000;
-                    long minutes = seconds / 60;
-                    long remainingSeconds = seconds % 60;
-                    runOnUiThread(() -> binding.timerIndicatorTextview.setText(String.format("%02d:%02d", minutes, remainingSeconds)));
-                }
+        // Tạo CountDownTimer trên UI thread
+        new CountDownTimer(totalTimeInMillis, 1000L) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long seconds = millisUntilFinished / 1000;
+                long minutes = seconds / 60;
+                long remainingSeconds = seconds % 60;
+                // Sử dụng String.format với Locale để tránh sử dụng mặc định locale
+                binding.timerIndicatorTextview.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, remainingSeconds));
+            }
 
-                @Override
-                public void onFinish() {
-                    runOnUiThread(() -> finishQuiz());
-                }
-            }.start();
-        });
+            @Override
+            public void onFinish() {
+                finishQuiz();
+            }
+        }.start();
     }
 
     // Tải câu hỏi từ danh sách
@@ -103,21 +93,16 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
             return;
         }
 
-        // Dùng ExecutorService để tải câu hỏi trong một luồng riêng
-        executorService.execute(() -> {
-            TaskQuesModel currentQuestion = questionModelList.get(currentQuestionIndex);
-
-            // Cập nhật giao diện người dùng từ luồng chính
-            runOnUiThread(() -> {
-                binding.questionIndicatorTextview.setText("Question " + (currentQuestionIndex + 1) + "/" + questionModelList.size());
-                binding.questionProgressIndicator.setProgress((int) ((currentQuestionIndex / (float) questionModelList.size()) * 100));
-                binding.questionTextview.setText(currentQuestion.getQuestion());
-                binding.btn0.setText(currentQuestion.getOptions().get(0));
-                binding.btn1.setText(currentQuestion.getOptions().get(1));
-                binding.btn2.setText(currentQuestion.getOptions().get(2));
-                binding.btn3.setText(currentQuestion.getOptions().get(3));
-            });
-        });
+        // Lấy câu hỏi hiện tại và cập nhật giao diện
+        TaskQuesModel currentQuestion = questionModelList.get(currentQuestionIndex);
+        // Sử dụng tài nguyên chuỗi với tham số
+        binding.questionIndicatorTextview.setText(getString(R.string.question_indicator, currentQuestionIndex + 1, questionModelList.size()));
+        binding.questionProgressIndicator.setProgress((int) ((currentQuestionIndex / (float) questionModelList.size()) * 100));
+        binding.questionTextview.setText(currentQuestion.getQuestion());
+        binding.btn0.setText(currentQuestion.getOptions().get(0));
+        binding.btn1.setText(currentQuestion.getOptions().get(1));
+        binding.btn2.setText(currentQuestion.getOptions().get(2));
+        binding.btn3.setText(currentQuestion.getOptions().get(3));
     }
 
     @Override
@@ -125,7 +110,7 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
         resetButtonColors();
         if (view.getId() == R.id.next_btn) {
             if (selectedAnswer.isEmpty()) {
-                Toast.makeText(this, "Vui lòng chọn câu trả lời để tiếp tục", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.select_answer), Toast.LENGTH_SHORT).show();
                 return;
             }
             if (selectedAnswer.equals(questionModelList.get(currentQuestionIndex).getCorrect())) {
@@ -154,12 +139,12 @@ public class TaskQuiz extends AppCompatActivity implements View.OnClickListener 
 
         ScoreDialogBinding dialogBinding = ScoreDialogBinding.inflate(getLayoutInflater());
         dialogBinding.scoreProgressIndicator.setProgress(percentage);
-        dialogBinding.scoreProgressText.setText(percentage + "%");
+        dialogBinding.scoreProgressText.setText(String.format(Locale.getDefault(), "%d%%", percentage));
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(dialogBinding.getRoot())
                 .setCancelable(false)
-                .setPositiveButton("Finish", (dialog, which) -> finish())
+                .setPositiveButton(getString(R.string.finish), (dialog, which) -> finish())
                 .show();
     }
 }

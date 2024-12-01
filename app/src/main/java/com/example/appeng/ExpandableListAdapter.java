@@ -7,19 +7,32 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
-    private List<String> parentList; // Danh sách mục cha
-    private HashMap<String, List<String>> childMap; // Map mục cha -> danh sách mục con
+    private final Context context;
+    private final List<String> parentList; // Danh sách mục cha
+    private final HashMap<String, List<String>> childMap; // Map mục cha -> danh sách mục con
 
     public ExpandableListAdapter(Context context, List<String> parentList, HashMap<String, List<String>> childMap) {
         this.context = context;
         this.parentList = parentList;
         this.childMap = childMap;
+
+        // Kiểm tra dữ liệu đầu vào
+        if (parentList == null || childMap == null) {
+            throw new IllegalArgumentException("parentList and childMap must not be null");
+        }
+
+        // Kiểm tra các key trong parentList có tồn tại trong childMap không
+        for (String parent : parentList) {
+            if (!childMap.containsKey(parent)) {
+                throw new IllegalArgumentException("childMap must contain all keys in parentList");
+            }
+        }
     }
 
     @Override
@@ -40,7 +53,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return childMap.get(parentList.get(groupPosition)).get(childPosition);
+        List<String> childList = childMap.get(parentList.get(groupPosition));
+        return childList != null ? childList.get(childPosition) : null;
     }
 
     @Override

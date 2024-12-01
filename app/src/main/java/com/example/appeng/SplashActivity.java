@@ -1,11 +1,13 @@
 package com.example.appeng;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
     public static int SPLASH_TIMER = 3000; // Thời gian hiển thị Splash (3 giây)
 

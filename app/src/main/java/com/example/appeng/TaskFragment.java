@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,10 +20,9 @@ public class TaskFragment extends Fragment {
 
     private ActivityTaskFragmentBinding binding;
     private List<TaskQuizModel> quizModelList;
-    private TaskListAdapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate layout cho Fragment này
         binding = ActivityTaskFragmentBinding.inflate(inflater, container, false);
 
@@ -35,7 +36,7 @@ public class TaskFragment extends Fragment {
     private void setupRecyclerView() {
         if (binding != null) { // Kiểm tra binding trước khi sử dụng
             binding.progressBar.setVisibility(View.GONE);
-            adapter = new TaskListAdapter(quizModelList);
+            TaskListAdapter adapter = new TaskListAdapter(quizModelList);
             binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.recyclerView.setAdapter(adapter);
         }

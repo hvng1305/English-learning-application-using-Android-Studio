@@ -16,29 +16,26 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.appeng.databinding.ActivityQuizBinding;
 import com.example.appeng.databinding.ScoreDialogBinding;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static List<QuestionModel> questionModelList; // Danh sách câu hỏi
-    private ActivityQuizBinding binding;
+    public static List<QuestionModel> questionModelList;
 
-    private ExecutorService executorService; // ExecutorService để tải câu hỏi
-    private int currentQuestionIndex = 0; // Chỉ số câu hỏi hiện tại
-    private String selectedAnswer = ""; // Đáp án được chọn
-    private int score = 0; // Điểm số
+    private ActivityQuizBinding binding;
+    private int currentQuestionIndex = 0;
+    private String selectedAnswer = "";
+    private int score = 0;
+
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityQuizBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        // Khởi tạo ExecutorService
-        executorService = Executors.newSingleThreadExecutor();
 
         // Thiết lập Toolbar
         setSupportActionBar(binding.toolbar);
@@ -57,7 +54,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         binding.btn3.setOnClickListener(this);
         binding.nextBtn.setOnClickListener(this);
 
-        // Tải câu hỏi bất đồng bộ
         loadQuestionsAsync();
     }
 
@@ -67,32 +63,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loadQuestionsAsync() {
         executorService.execute(() -> {
-            // Mô phỏng tải dữ liệu từ API hoặc cơ sở dữ liệu
-            try {
-                Thread.sleep(1000); // Giả lập thời gian tải dữ liệu
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            // Tạo danh sách câu hỏi (có thể thay bằng API hoặc database)
-            questionModelList = new ArrayList<>();
-            questionModelList.add(new QuestionModel(
-                    "What is the capital of France?",
-                    List.of("Paris", "London", "Berlin", "Madrid"),
-                    "Paris"
-            ));
-            questionModelList.add(new QuestionModel(
-                    "What is 5 + 3?",
-                    List.of("5", "8", "10", "12"),
-                    "8"
-            ));
-            questionModelList.add(new QuestionModel(
-                    "Which planet is known as the Red Planet?",
-                    List.of("Earth", "Mars", "Venus", "Jupiter"),
-                    "Mars"
-            ));
-
-            // Cập nhật giao diện trên luồng chính
+            // Mô phỏng tải câu hỏi hoặc dữ liệu khác nếu cần
             runOnUiThread(this::loadQuestions);
         });
     }
@@ -137,7 +108,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
                 currentQuestion.setUserAnswer(selectedAnswer); // Lưu câu trả lời sai
             }
             currentQuestionIndex++;
-            loadQuestions();
+            loadQuestionsAsync();
         } else {
             resetButtonColors(); // Reset màu nút khác trước khi đổi màu
             Button clickedBtn = (Button) view;
@@ -153,6 +124,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         binding.btn3.setBackgroundColor(getColor(R.color.grey));
     }
 
+    @SuppressLint("SetTextI18n")
     private void finishQuiz() {
         int totalQuestions = questionModelList.size();
         int percentage = (int) ((float) score / totalQuestions * 100);
@@ -208,8 +180,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (executorService != null && !executorService.isShutdown()) {
-            executorService.shutdown();
-        }
+        executorService.shutdown(); // Đóng ExecutorService khi Activity bị hủy
     }
 }

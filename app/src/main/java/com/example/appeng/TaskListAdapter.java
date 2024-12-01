@@ -1,5 +1,6 @@
 package com.example.appeng;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
             this.binding = binding;
         }
 
+        @SuppressLint("SetTextI18n")
         public void bind(TaskQuizModel model) {
             binding.quizTitleText.setText(model.getTitle());
             binding.quizSubtitleText.setText(model.getSubtitle());

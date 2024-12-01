@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class GameFragment extends Fragment {
-    private Button btnPlay;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -17,7 +16,7 @@ public class GameFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_game_fragment, container, false);
 
         // Initialize btnPlay by using the view to find the button
-        btnPlay = view.findViewById(R.id.btnPlay);
+        Button btnPlay = view.findViewById(R.id.btnPlay);
 
         btnPlay.setOnClickListener(v -> {
             // Tạo Intent để chuyển sang GameWord Activity

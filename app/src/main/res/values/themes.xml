@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
+        <!-- Customize your light theme here -->
         <item name="colorPrimary">@color/midnightblue</item>
     </style>
 
@@ -13,21 +13,12 @@
         <item name="colorSecondary">@color/lavender</item>
     </style>
 
-    <!-- Theme Red -->
-    <style name="Theme.App.Red" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/my_primary</item>
-        <item name="colorPrimaryVariant">@color/my_primary</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/my_primary</item>
+    <style name="Theme.App.Splash" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/splashapp</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
-    <!-- Theme Blue -->
-    <style name="Theme.App.Blue" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/bluelight</item>
-        <item name="colorPrimaryVariant">@color/bluelight</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSecondary">@color/bluelight</item>
-    </style>
 
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
 </resources>

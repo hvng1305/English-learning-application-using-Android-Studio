@@ -18,7 +18,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 
 public class BaseActivity extends AppCompatActivity {
 
-    private ActivityResultLauncher<String> permissionLauncher =
+    private final ActivityResultLauncher<String> permissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
                     getDeviceToken();

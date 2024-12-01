@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -19,10 +21,9 @@ public class LearnFragment extends Fragment {
 
     private ActivityLearnFragmentBinding binding;
     private List<QuizModel> quizModelList;
-    private QuizListAdapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate layout cho Fragment này
         binding = ActivityLearnFragmentBinding.inflate(inflater, container, false);
 
@@ -36,7 +37,7 @@ public class LearnFragment extends Fragment {
     private void setupRecyclerView() {
         if (binding != null) { // Kiểm tra binding trước khi sử dụng
             binding.progressBar.setVisibility(View.GONE);
-            adapter = new QuizListAdapter(quizModelList);
+            QuizListAdapter adapter = new QuizListAdapter(quizModelList);
             binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
             binding.recyclerView.setAdapter(adapter);
         }

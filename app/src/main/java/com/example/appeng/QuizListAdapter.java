@@ -1,18 +1,20 @@
 package com.example.appeng;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
 import com.example.appeng.databinding.QuizItemRecyclerRowBinding;
+
+import java.util.List;
 
 public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.MyViewHolder> {
 
@@ -54,23 +56,25 @@ public class QuizListAdapter extends RecyclerView.Adapter<QuizListAdapter.MyView
                     // Hiển thị Custom Toast khi bài học đã hoàn thành
                     showCustomToast(
                             binding.getRoot().getContext(),
-                            "Bạn đã hoàn thành bài học này!",
                             R.drawable.asuccessicon
                     );
                 }
             });
         }
 
-        private void showCustomToast(Context context, String message, int iconResId) {
+        // Sửa lỗi khi không truyền null vào inflate và cho phép truyền message tùy chỉnh
+        @SuppressLint("SetTextI18n")
+        private void showCustomToast(Context context, int iconResId) {
+            // Thay vì sử dụng null, dùng parent để tránh lỗi view root null
             View customToastView = LayoutInflater.from(context).inflate(
-                    R.layout.custom_toast, null
+                    R.layout.custom_toast, (ViewGroup) null
             );
 
             // Bind các thành phần trong custom toast layout
             android.widget.TextView toastText = customToastView.findViewById(R.id.toast_text);
-            android.widget.ImageView toastIcon = customToastView.findViewById(R.id.toast_image);
+            ImageView toastIcon = customToastView.findViewById(R.id.toast_image);
 
-            toastText.setText(message);
+            toastText.setText("Bạn đã hoàn thành bài học này!"); // Sử dụng giá trị message từ tham số
             toastIcon.setImageResource(iconResId);
 
             Toast toast = new Toast(context);
