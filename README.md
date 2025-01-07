@@ -44,6 +44,7 @@
    <img src="./imgGrammar.png" alt="Giao diện ngữ pháp" width="150">  
    <img src="./imgVoca.png" alt="Giao diện từ vựng" width="150">  
    <img src="./imagegameapp.png" alt="Giao diện trò chơi" width="150"> 
+   <img src="./imgGameWord.png" alt="Giao diện trò chơi nối từ" width="150"> 
    <img src="./imgTask.png" alt="Giao diện kiểm tra" width="150">  
    <img src="./imageuserapp.png" alt="Giao diện người dùng" width="150">  
 </div>  
