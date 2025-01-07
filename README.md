@@ -34,7 +34,7 @@
 
 ### **Logo ứng dụng**  
 <div style="text-align: center; margin: 10px 0;">  
-   <img src="./Logo App.png" alt="Logo của ứng dụng" width="200">  
+   <img src="./logoappMidnight.png" alt="Logo của ứng dụng" width="200">  
 </div>  
 
 ### **Các giao diện chính**  
